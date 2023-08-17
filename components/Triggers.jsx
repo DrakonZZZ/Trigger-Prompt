@@ -9,6 +9,7 @@ const Triggers = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [searchList, setSearchList] = useState([]);
   const [searchTimeout, setSearchTimeout] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleSearch = (e) => {
     clearTimeout(searchTimeout);
@@ -38,10 +39,13 @@ const Triggers = () => {
   };
 
   const fetchData = async () => {
+    setLoading(true);
     const res = await fetch('/api/trigger');
     const parsedData = await res.json();
     setTriggerList(parsedData);
     setSearchList(parsedData);
+
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -64,7 +68,11 @@ const Triggers = () => {
           />
         </form>
       </div>
-      <Prompter data={searchList} handleCategory={handleCategory} />
+      <Prompter
+        data={searchList}
+        handleCategory={handleCategory}
+        loading={loading}
+      />
     </>
   );
 };

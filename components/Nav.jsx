@@ -19,11 +19,6 @@ const Nav = () => {
     setupProvider();
   }, []);
 
-  const underline = `py-0.5 relative before:content-[''] before:absolute before:block before:w-full before:h-[2px] 
-  before:bottom-0 before:left-0 before:bg-gradient-to-tr from-yellow-500 via-pink-500 to-red-500
-  before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
-  before:transition before:ease-in-out before:duration-200`;
-
   return (
     <nav className="w-full mb-14 pt-3 flex-between">
       <Link href="/" className="flex gap-2 float-left">
@@ -37,21 +32,21 @@ const Nav = () => {
             <Link
               href="/create-triggers"
               prefetch={false}
-              className={`font-medium ${underline}`}
+              className="font-medium text_underline"
             >
               Create a prompt
             </Link>
             <button
               type="button"
               onClick={signOut}
-              className={`font-medium ${underline}`}
+              className="font-medium text_underline"
             >
               Sign-Out
             </button>
             <Link href="profile" prefetch={false}>
               <Image
                 src={data?.user.image}
-                className="rounded-full"
+                className="rounded-full hover:border-2 hover:border-red-500 transition"
                 width={28}
                 height={28}
                 alt="profile"

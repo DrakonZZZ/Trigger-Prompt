@@ -5,12 +5,23 @@ import { useUserContext } from '@/utils/context';
 import { PiCopyThin, PiCheckThin } from 'react-icons/pi';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { usePathname } from 'next/navigation';
+import Loader from './Loader';
 
-const PrompterCard = () => {
+const PrompterCard = ({ loading }) => {
   const { data: userData } = useSession();
   const pathname = usePathname();
-  const { triggers, copy, handleCopy, handleEdit, handleDelete } =
-    useUserContext();
+  const {
+    triggers,
+    copy,
+    handleCopy,
+    handleEdit,
+    handleDelete,
+    handleCategory,
+  } = useUserContext();
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <>

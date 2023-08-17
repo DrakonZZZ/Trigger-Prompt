@@ -8,13 +8,16 @@ import ErrorPage from '../error/page';
 
 const page = () => {
   const { data } = useSession();
-  const { trigger, setTriggers } = useUserContext();
+  const { setTriggers } = useUserContext();
+  const [loading, setLoading] = useState(false);
 
   const fetchTriggers = async () => {
+    setLoading(true);
     const res = await fetch(`/api/guests/${data?.user.id}/triggers`);
     const parsedData = await res.json();
 
     setTriggers(parsedData);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -23,17 +26,16 @@ const page = () => {
     }
   }, [data]);
 
+  if (!data?.user.id) {
+    return <ErrorPage code="403" message="access denied!" />;
+  }
+
   return (
-    <>
-      {data?.user.id ? (
-        <Avatar
-          name="Your"
-          desc="Manage all of your personal data and prompts/triggers in one location."
-        />
-      ) : (
-        <ErrorPage code="403" message="access denied!" />
-      )}
-    </>
+    <Avatar
+      name="Your"
+      desc="Manage all of your personal data and prompts/triggers in one location."
+      loading={loading}
+    />
   );
 };
 

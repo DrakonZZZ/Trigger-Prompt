@@ -8,9 +8,9 @@ const ErrorPage = ({ message, code }) => {
     Router.push('/');
   }, 2000);
   return (
-    <div className="font-inter w-full w-max-full h-80v flex justify-center flex-col items-center">
-      <h1 className="header_text text-gray-300 mb-6">{code}</h1>
-      <p className="text-3xl font-medium tracking-widest uppercase text-gray-400 ">
+    <div className="font-inter w-full w-max-full h-80v flex justify-center flex-col items-center ">
+      <h1 className="text-9xl font-extrabold mb-6 tracking-widest">{code}</h1>
+      <p className="text-3xl font-medium tracking-widest uppercase text-gray-600 ">
         {message}
       </p>
     </div>

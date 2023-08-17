@@ -2,18 +2,20 @@
 
 import Image from 'next/image';
 import { PiCopyThin, PiCheckThin } from 'react-icons/pi';
-import { useState } from 'react';
 import { useUserContext } from '@/utils/context';
+import Loader from './Loader';
 
-const Prompter = ({ data, handleCategory }) => {
+const Prompter = ({ data, handleCategory, loading }) => {
   const { copy, handleCopy } = useUserContext();
+
+  if (loading) {
+    return <Loader />;
+  }
 
   return (
     <div className="w-full mt-16 prompt-layout grid lg:grid-cols-3 gap-3 md:grid-cols-2 sm:grid-cols-1">
       {data.map((item) => {
         const { _id, trigger, userID, category } = item;
-
-        console.log(copy, trigger);
         return (
           <div className="trigger_card" key={_id}>
             <div className="flex justify-between items-start gap-5">
@@ -40,10 +42,12 @@ const Prompter = ({ data, handleCategory }) => {
               {trigger}
             </p>
             <span
-              className="font-inter text-sm border- text-gray-500 flex-end cursor-pointer"
+              className="font-inter flex justify-end cursor-pointer "
               onClick={() => handleCategory(category)}
             >
-              {category}
+              <span className="text-xs font-bold text-gray-500 bg-zinc-800 px-2 py-1 shadow-lg rounded-xl">
+                {category}
+              </span>
             </span>
           </div>
         );

@@ -38,20 +38,18 @@ const page = () => {
     }
   };
 
+  if (!data?.user.id) {
+    return <ErrorPage code="403" message="access denied!" />;
+  }
+
   return (
-    <>
-      {data?.user.id ? (
-        <Form
-          type="Create"
-          triggerData={triggerData}
-          setTriggerData={setTriggerData}
-          submitStage={stage}
-          handleSubmit={createTrigger}
-        />
-      ) : (
-        <ErrorPage code="403" message="access denied!" />
-      )}
-    </>
+    <Form
+      type="Create"
+      triggerData={triggerData}
+      setTriggerData={setTriggerData}
+      submitStage={stage}
+      handleSubmit={createTrigger}
+    />
   );
 };
 

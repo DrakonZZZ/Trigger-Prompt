@@ -17,7 +17,6 @@ const page = () => {
 
   useEffect(() => {
     const getTriggerData = async () => {
-      console.log(triggerId);
       const res = await fetch(`/api/trigger/${triggerId}`);
       const parsedData = await res.json();
 
@@ -27,7 +26,7 @@ const page = () => {
       });
     };
 
-    if (triggerId) getTriggerData();
+    if (data?.user.id) getTriggerData();
   }, [triggerId]);
 
   return (
