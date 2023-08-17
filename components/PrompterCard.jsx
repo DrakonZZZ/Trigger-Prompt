@@ -6,15 +6,15 @@ import { PiCopyThin, PiCheckThin } from 'react-icons/pi';
 import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { usePathname } from 'next/navigation';
 
-const PrompterCard = ({ data }) => {
+const PrompterCard = () => {
   const [copy, setCopy] = useState('');
   const { data: userData } = useSession();
   const pathname = usePathname();
 
-  const { handleEdit, handleDelete } = useUserContext();
+  const { triggers, handleEdit, handleDelete } = useUserContext();
   return (
     <>
-      {data.map((item) => {
+      {triggers.map((item) => {
         const { _id, trigger, userID, category } = item;
 
         const handleCopy = () => {

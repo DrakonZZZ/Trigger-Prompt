@@ -1,3 +1,4 @@
+import AppContext from '@/utils/context';
 import './globals.css';
 import { Nav, Provider } from '@/components';
 
@@ -10,15 +11,17 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body>
-        <Provider>
-          <div className="prime">
-            <div className="gradiant"></div>
-          </div>
-          <main className="app">
-            <Nav />
-            {children}
-          </main>
-        </Provider>
+        <AppContext>
+          <Provider>
+            <div className="prime">
+              <div className="gradiant"></div>
+            </div>
+            <main className="app">
+              <Nav />
+              {children}
+            </main>
+          </Provider>
+        </AppContext>
       </body>
     </html>
   );

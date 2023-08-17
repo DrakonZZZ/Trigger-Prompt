@@ -14,6 +14,13 @@ module.exports = {
       colors: {
         'primary-dark': '#222',
       },
+      height: {
+        '50v': '50vh',
+        '60v': '60vh',
+        '70v': '70vh',
+        '80v': '80vh',
+        '90v': '90vh',
+      },
     },
   },
   plugins: [],

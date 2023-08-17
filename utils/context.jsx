@@ -14,6 +14,7 @@ const AppContext = ({ children }) => {
     input: '',
     category: '',
   });
+  const [triggers, setTriggers] = useState([]);
   const Router = useRouter();
 
   //create trigger
@@ -83,6 +84,8 @@ const AppContext = ({ children }) => {
         setStage,
         triggerData,
         setTriggerData,
+        triggers,
+        setTriggers,
         createTrigger,
         updateTrigger,
         handleDelete,
