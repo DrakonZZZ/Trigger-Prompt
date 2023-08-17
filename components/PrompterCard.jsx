@@ -10,8 +10,8 @@ const PrompterCard = () => {
   const [copy, setCopy] = useState('');
   const { data: userData } = useSession();
   const pathname = usePathname();
-
   const { triggers, handleEdit, handleDelete } = useUserContext();
+
   return (
     <>
       {triggers.map((item) => {
@@ -24,7 +24,7 @@ const PrompterCard = () => {
         };
 
         return (
-          <div className="trigger_card my-4" key={_id}>
+          <div className="trigger_card w-9/12 my-4" key={_id}>
             <div className="flex justify-between items-start gap-2">
               <div className="flex-1 flex justify-start items-center gap-3 cursor-pointer">
                 <Image
@@ -40,16 +40,16 @@ const PrompterCard = () => {
               </div>
               {userData?.user.id === userID._id && pathname === '/profile' && (
                 <>
-                  <div className="card_btn">
+                  <div className="card_btn profile-btns">
                     <AiOutlineEdit onClick={() => handleEdit(_id)} />
                   </div>
-                  <div className="card_btn">
+                  <div className="card_btn profile-btns">
                     <AiOutlineDelete onClick={() => handleDelete(_id)} />
                   </div>
                 </>
               )}
 
-              <div className="card_btn" onClick={handleCopy}>
+              <div className="card_btn profile-btns" onClick={handleCopy}>
                 {copy === trigger ? <PiCheckThin /> : <PiCopyThin />}
               </div>
             </div>
@@ -58,7 +58,7 @@ const PrompterCard = () => {
             </p>
             <span
               className="font-inter flex justify-end cursor-pointer "
-              onClick={() => handleCategory && handleCategory(trigger.tag)}
+              onClick={() => handleCategory && handleCategory(trigger.category)}
             >
               <span className=" text-xs font-bold text-gray-500 bg-zinc-800 px-2 py-1 shadow-lg rounded-xl">
                 {category}

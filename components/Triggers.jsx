@@ -19,19 +19,21 @@ const Triggers = () => {
     fetchData();
   }, []);
   return (
-    <div className="prompter">
-      <form action="w-full flex-center relative">
-        <input
-          type="text"
-          className="search_input peer"
-          value={searchTerm}
-          onChange={handleSearch}
-          placeholder="Lookup a tag or a username"
-          required
-        />
-      </form>
+    <>
+      <div className="prompter">
+        <form action="w-full flex-center relative">
+          <input
+            type="text"
+            className="search_input peer"
+            value={searchTerm}
+            onChange={handleSearch}
+            placeholder="Lookup a tag or a username"
+            required
+          />
+        </form>
+      </div>
       <Prompter data={triggerList} handleCategory={() => {}} />
-    </div>
+    </>
   );
 };
 

@@ -9,7 +9,7 @@ import { useState } from 'react';
 const Prompter = ({ data, handleCategory, handleEdit, handleDelete }) => {
   const [copy, setCopy] = useState('');
   return (
-    <div className="mt-16 prompt-layout">
+    <div className="w-full mt-16 prompt-layout grid  sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {data.map((item) => {
         const { _id, trigger, userID, category } = item;
         return (

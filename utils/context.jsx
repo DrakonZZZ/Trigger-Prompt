@@ -73,7 +73,20 @@ const AppContext = ({ children }) => {
     }
   };
 
-  const handleDelete = async () => {};
+  const handleDelete = async (id) => {
+    const deleteConfirmation = confirm('You want to delete this?');
+
+    if (deleteConfirmation) {
+      try {
+        await fetch(`/api/trigger/${id.toString()}`, {
+          method: 'DELETE',
+        });
+        0;
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   return (
     <UserContext.Provider

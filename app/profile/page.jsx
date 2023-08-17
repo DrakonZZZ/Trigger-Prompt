@@ -8,7 +8,7 @@ import ErrorPage from '../error/page';
 
 const page = () => {
   const { data } = useSession();
-  const { setTriggers } = useUserContext();
+  const { trigger, setTriggers } = useUserContext();
   useEffect(() => {
     const fetchTriggers = async () => {
       const res = await fetch(`/api/guests/${data?.user.id}/triggers`);
@@ -19,7 +19,7 @@ const page = () => {
     if (data?.user.id) {
       fetchTriggers();
     }
-  }, []);
+  }, [data, trigger]);
 
   return (
     <>
