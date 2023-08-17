@@ -4,6 +4,7 @@ import { useSession } from 'next-auth/react';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Form } from '@/components';
+import ErrorPage from '../error/page';
 
 const page = () => {
   const route = useRouter();
@@ -38,13 +39,19 @@ const page = () => {
   };
 
   return (
-    <Form
-      type="Create"
-      triggerData={triggerData}
-      setTriggerData={setTriggerData}
-      submitStage={stage}
-      handleSubmit={createTrigger}
-    />
+    <>
+      {data?.user.id ? (
+        <Form
+          type="Create"
+          triggerData={triggerData}
+          setTriggerData={setTriggerData}
+          submitStage={stage}
+          handleSubmit={createTrigger}
+        />
+      ) : (
+        <ErrorPage code="403" message="access denied!" />
+      )}
+    </>
   );
 };
 

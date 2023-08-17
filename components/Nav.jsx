@@ -4,19 +4,18 @@ import { useState, useEffect } from 'react';
 import { signIn, signOut, useSession, getProviders } from 'next-auth/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { GiPlagueDoctorProfile } from 'react-icons/gi';
 
 const Nav = () => {
   const { data } = useSession();
   const [provider, setProvider] = useState(null);
   const [tglMenu, setTglMenu] = useState(false);
 
-  useEffect(() => {
-    const setupProvider = async () => {
-      const res = await getProviders();
-      setProvider(res);
-    };
+  const setupProvider = async () => {
+    const res = await getProviders();
+    setProvider(res);
+  };
 
+  useEffect(() => {
     setupProvider();
   }, []);
 
@@ -24,6 +23,7 @@ const Nav = () => {
   before:bottom-0 before:left-0 before:bg-gradient-to-tr from-yellow-500 via-pink-500 to-red-500
   before:hover:scale-x-100 before:scale-x-0 before:origin-top-left
   before:transition before:ease-in-out before:duration-200`;
+
   return (
     <nav className="w-full mb-14 pt-3 flex-between">
       <Link href="/" className="flex gap-2 float-left">
@@ -36,6 +36,7 @@ const Nav = () => {
           <div className="flex gap-3 md:gap-5">
             <Link
               href="/create-triggers"
+              prefetch={false}
               className={`font-medium ${underline}`}
             >
               Create a prompt
@@ -47,7 +48,7 @@ const Nav = () => {
             >
               Sign-Out
             </button>
-            <Link href="profile">
+            <Link href="profile" prefetch={false}>
               <Image
                 src={data?.user.image}
                 className="rounded-full"

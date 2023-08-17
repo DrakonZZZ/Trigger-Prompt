@@ -7,21 +7,15 @@ import { AiOutlineEdit, AiOutlineDelete } from 'react-icons/ai';
 import { usePathname } from 'next/navigation';
 
 const PrompterCard = () => {
-  const [copy, setCopy] = useState('');
   const { data: userData } = useSession();
   const pathname = usePathname();
-  const { triggers, handleEdit, handleDelete } = useUserContext();
+  const { triggers, copy, handleCopy, handleEdit, handleDelete } =
+    useUserContext();
 
   return (
     <>
       {triggers.map((item) => {
         const { _id, trigger, userID, category } = item;
-
-        const handleCopy = () => {
-          setCopy(trigger);
-          navigator.clipboard.writeText(trigger);
-          setTimeout(() => setCopy(''), 2000);
-        };
 
         return (
           <div className="trigger_card w-9/12 my-4" key={_id}>
@@ -49,7 +43,10 @@ const PrompterCard = () => {
                 </>
               )}
 
-              <div className="card_btn profile-btns" onClick={handleCopy}>
+              <div
+                className="card_btn profile-btns"
+                onClick={() => handleCopy(trigger)}
+              >
                 {copy === trigger ? <PiCheckThin /> : <PiCopyThin />}
               </div>
             </div>

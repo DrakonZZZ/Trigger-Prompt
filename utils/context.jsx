@@ -8,16 +8,23 @@ export const UserContext = createContext();
 export const useUserContext = () => useContext(UserContext);
 
 const AppContext = ({ children }) => {
+  //small screen toggle menu
   const [tglMenu, setTglMenu] = useState(false);
+  //Loading state
   const [stage, setStage] = useState(false);
+  //Trigger Profile data
   const [triggerData, setTriggerData] = useState({
     input: '',
     category: '',
   });
+  //Used for filtering data
+  const [triggerList, setTriggerList] = useState([]);
   const [triggers, setTriggers] = useState([]);
+  const [copy, setCopy] = useState('');
+
   const Router = useRouter();
 
-  //create trigger
+  //create prompt function
   const createTrigger = async (e, data) => {
     e.preventDefault();
     setStage(true);
@@ -41,8 +48,16 @@ const AppContext = ({ children }) => {
     }
   };
 
+  //edit function
   const handleEdit = (id) => {
     Router.push(`/update?id=${id}`);
+  };
+
+  //Copy function
+  const handleCopy = (text) => {
+    setCopy(text);
+    navigator.clipboard.writeText(text);
+    setTimeout(() => setCopy(''), 2000);
   };
 
   //updating existing prompt
@@ -73,6 +88,7 @@ const AppContext = ({ children }) => {
     }
   };
 
+  //Profile prompt delete function
   const handleDelete = async (id) => {
     const deleteConfirmation = confirm('You want to delete this?');
 
@@ -95,12 +111,17 @@ const AppContext = ({ children }) => {
         setTglMenu,
         stage,
         setStage,
+        copy,
+        setCopy,
         triggerData,
         setTriggerData,
+        triggerList,
+        setTriggerList,
         triggers,
         setTriggers,
         createTrigger,
         updateTrigger,
+        handleCopy,
         handleDelete,
         handleEdit,
       }}

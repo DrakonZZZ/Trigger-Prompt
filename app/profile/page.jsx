@@ -9,17 +9,19 @@ import ErrorPage from '../error/page';
 const page = () => {
   const { data } = useSession();
   const { trigger, setTriggers } = useUserContext();
-  useEffect(() => {
-    const fetchTriggers = async () => {
-      const res = await fetch(`/api/guests/${data?.user.id}/triggers`);
-      const parsedData = await res.json();
 
-      setTriggers(parsedData);
-    };
+  const fetchTriggers = async () => {
+    const res = await fetch(`/api/guests/${data?.user.id}/triggers`);
+    const parsedData = await res.json();
+
+    setTriggers(parsedData);
+  };
+
+  useEffect(() => {
     if (data?.user.id) {
       fetchTriggers();
     }
-  }, [data, trigger]);
+  }, [data]);
 
   return (
     <>

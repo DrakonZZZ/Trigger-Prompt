@@ -104,7 +104,7 @@
 }
 
 .copy_btn {
-  @apply w-6 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+  @apply w-6 h-6 rounded-full bg-black backdrop-blur flex justify-center items-center cursor-pointer;
 }
 
 .profile-btns {
@@ -152,7 +152,7 @@
 
 /* TriggerCard  */
 .trigger_card {
-  @apply flex-1
+  @apply flex flex-col 
    break-inside-avoid rounded-lg border border-zinc-800 bg-black/20 bg-clip-padding p-6 pb-4 shadow-lg backdrop-blur-lg max-w-full h-auto mb-6;
 }
 
