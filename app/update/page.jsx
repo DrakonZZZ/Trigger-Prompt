@@ -8,7 +8,9 @@ import { useSession } from 'next-auth/react';
 import ErrorPage from '../error/page';
 
 const page = () => {
-  const { data } = useSession();
+  const { data, status } = useSession({
+    required: true,
+  });
   const searchParams = useSearchParams();
   const triggerId = searchParams.get('id');
 
@@ -26,12 +28,12 @@ const page = () => {
       });
     };
 
-    if (data?.user.id) getTriggerData();
+    if (triggerId) getTriggerData();
   }, [triggerId]);
 
   return (
     <>
-      {data?.user.id ? (
+      {status === 'authenticated' && (
         <Form
           type="Edit"
           desc="Edit your Prompt/Trigger"
@@ -40,8 +42,6 @@ const page = () => {
           submitStage={stage}
           handleSubmit={(e) => updateTrigger(e, triggerId)}
         />
-      ) : (
-        <ErrorPage code="403" message="access denied!" />
       )}
     </>
   );

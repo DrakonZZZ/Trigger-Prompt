@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react';
 import ErrorPage from '../error/page';
 
 const page = () => {
-  const { data } = useSession();
+  const { data, status } = useSession({
+    required: true,
+  });
   const { setTriggers } = useUserContext();
   const [loading, setLoading] = useState(false);
 
@@ -26,16 +28,16 @@ const page = () => {
     }
   }, [data]);
 
-  if (!data?.user.id) {
-    return <ErrorPage code="403" message="access denied!" />;
-  }
-
   return (
-    <Avatar
-      name="Your"
-      desc="Manage all of your personal data and prompts/triggers in one location."
-      loading={loading}
-    />
+    <>
+      {status === 'authenticated' && (
+        <Avatar
+          name="Your"
+          desc="Manage all of your personal data and prompts/triggers in one location."
+          loading={loading}
+        />
+      )}
+    </>
   );
 };
 
