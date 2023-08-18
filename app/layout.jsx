@@ -3,10 +3,12 @@ import './globals.css';
 import { Nav, Provider } from '@/components';
 
 export const metadata = {
-  title: 'Trigger',
-  description: 'Share your amazing ai prompts with us.',
+  title: {
+    default: 'Trigger',
+    template: '%s | Trigger',
+  },
+  description: 'Share all your amazing prompts/triggers with us',
 };
-
 const RootLayout = ({ children }) => {
   return (
     <html lang="en">
