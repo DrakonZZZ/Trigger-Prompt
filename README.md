@@ -36,9 +36,12 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-MIT License
 
-Copyright (c) [2023] [Drakonz]
+
+
+
+## MIT License
+Copyright (c) 2023 Drakonz
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
